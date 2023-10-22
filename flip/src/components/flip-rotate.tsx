@@ -12,7 +12,7 @@ const Rotate = ({rotate, resultData}:{
         <div className = "cube">		
             {
                 resultData.slides.map((partyData:any)=>(
-                    <div style={{backgroundColor:resultData.color}} className="s-blk">
+                    <div style={{backgroundColor:resultData.color}} className="s-blk" key={partyData.title}>
                         <h3>{resultData.party}</h3>
                         <h1>{partyData.value}</h1>
                         <h5>{partyData.title}</h5>
