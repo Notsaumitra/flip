@@ -4,28 +4,27 @@ import Rotate from './flip-rotate';
 const HomeWidget = ({states}:{
     states:any
 }) => {
-    console.log("rendered");
     const[stateData, setStateData]= useState(states);
-
-  useEffect(()=>{
-    const intervalId = setInterval(()=>{
-        const activeIndex=stateData.findIndex((item:any)=>item.active);
-        let newStateData=[];
-        if(activeIndex>-1){
-          newStateData = stateData.map((eachState:any,index:number)=>{
-            return {
-              ...eachState,
-              active:activeIndex===stateData.length-1 && index===0 ? true : index==activeIndex+1 ? true :false
+    
+    useEffect(()=>{
+        const intervalId = setInterval(()=>{
+            const activeIndex=stateData.findIndex((item:any)=>item.active);
+            let newStateData=[];
+            if(activeIndex>-1){
+                newStateData = stateData.map((eachState:any,index:number)=>{
+                    return {
+                        ...eachState,
+                        active:activeIndex===stateData.length-1 && index==0 ? true : index==activeIndex+1 ? true :false
+                    }
+                })
             }
-          })
-        }
         setStateData(newStateData);
     }, 20000)
 
     return(()=>{
         clearInterval(intervalId);
     })
-  },[states])
+  },[stateData])
   return (
     <>
     {
